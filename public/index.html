@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SINAC - Login</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #003087 0%, #0057b8 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .logo h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #003087;
+      letter-spacing: 2px;
+    }
+
+    .logo p {
+      font-size: 12px;
+      color: #666;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.2s;
+      margin-bottom: 20px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #0057b8;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #003087;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover { background: #0057b8; }
+
+    #msg {
+      margin-top: 16px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+    }
+
+    #msg.error   { background: #fde8e8; color: #c0392b; border: 1px solid #f5c6cb; }
+    #msg.success { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <h1>SINAC</h1>
+      <p>Sistema de Manutencao de Aeronaves</p>
+    </div>
+
+    <form id="formLogin">
+      <label for="username">Usuario</label>
+      <input type="text" id="username" placeholder="Ex: Rinaldo" autocomplete="username" required />
+
+      <label for="password">Senha</label>
+      <input type="password" id="password" placeholder="••••••" autocomplete="current-password" required />
+
+      <button type="submit" id="btnLogin">Entrar</button>
+    </form>
+
+    <div id="msg"></div>
+  </div>
+
+  <script>
+    // Se ja estiver autenticado, redireciona
+    const token = localStorage.getItem('token');
+    const role  = localStorage.getItem('role');
+    if (token && role) {
+      window.location.href = role === 'diretor' ? '/anac.html' : '/dashboard.html';
+    }
+
+    document.getElementById('formLogin').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn  = document.getElementById('btnLogin');
+      const msg  = document.getElementById('msg');
+      btn.disabled = true;
+      btn.textContent = 'Autenticando...';
+      msg.style.display = 'none';
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      try {
+        const res  = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          msg.textContent = data.error || 'Erro ao fazer login.';
+          msg.className = 'error';
+          msg.style.display = 'block';
+        } else {
+          localStorage.setItem('token',    data.token);
+          localStorage.setItem('role',     data.role);
+          localStorage.setItem('username', data.username);
+
+          msg.textContent = 'Login realizado! Redirecionando...';
+          msg.className = 'success';
+          msg.style.display = 'block';
+
+          setTimeout(() => {
+            window.location.href = data.role === 'diretor' ? '/anac.html' : '/dashboard.html';
+          }, 800);
+        }
+      } catch (err) {
+        msg.textContent = 'Nao foi possivel conectar ao servidor.';
+        msg.className = 'error';
+        msg.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Entrar';
+      }
+    });
+  </script>
+</body>
+</html>

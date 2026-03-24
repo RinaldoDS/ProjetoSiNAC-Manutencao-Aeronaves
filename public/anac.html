@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SINAC - Painel do Diretor</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      color: #333;
+    }
+
+    header {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 0 32px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 { font-size: 18px; letter-spacing: 1px; }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .badge {
+      background: #c0392b;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    button.logout {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.2s;
+    }
+    button.logout:hover { background: rgba(255,255,255,0.15); }
+
+    main {
+      max-width: 1100px;
+      margin: 32px auto;
+      padding: 0 16px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a2e;
+      padding-bottom: 8px;
+      border-bottom: 3px solid #c0392b;
+    }
+
+    .stats {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      text-align: center;
+      flex: 1;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 700;
+    }
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .stat-pendente   .stat-number { color: #856404; }
+    .stat-autorizado .stat-number { color: #155724; }
+    .stat-negado     .stat-number { color: #721c24; }
+    .stat-total      .stat-number { color: #1a1a2e; }
+
+    /* FILTER BAR */
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .filter-btn {
+      padding: 7px 18px;
+      border-radius: 20px;
+      border: 2px solid #e0e0e0;
+      background: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #1a1a2e;
+      color: #fff;
+      border-color: #1a1a2e;
+    }
+
+    /* TABLE */
+    .table-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    thead {
+      background: #1a1a2e;
+      color: #fff;
+    }
+
+    thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    tbody tr { border-bottom: 1px solid #f0f0f0; }
+    tbody tr:hover { background: #fafafa; }
+    tbody td { padding: 12px 16px; vertical-align: middle; }
+
+    .status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .status-Pendente   { background: #fff3cd; color: #856404; }
+    .status-Autorizado { background: #d4edda; color: #155724; }
+    .status-Negado     { background: #f8d7da; color: #721c24; }
+
+    .btn-autorizar, .btn-negar {
+      padding: 5px 14px;
+      border-radius: 6px;
+      border: none;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      margin-right: 6px;
+    }
+
+    .btn-autorizar { background: #27ae60; color: #fff; }
+    .btn-autorizar:hover { opacity: 0.85; }
+
+    .btn-negar { background: #e74c3c; color: #fff; }
+    .btn-negar:hover { opacity: 0.85; }
+
+    .btn-autorizar:disabled, .btn-negar:disabled {
+      opacity: 0.4; cursor: not-allowed;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    #globalMsg {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    #globalMsg.success { background: #27ae60; color: #fff; }
+    #globalMsg.error   { background: #e74c3c; color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SINAC &mdash; Painel de Aprovacao</h1>
+    <div class="user-info">
+      <span id="userName">Carregando...</span>
+      <span class="badge">Diretor SINAC</span>
+      <button class="logout" id="btnLogout">Sair</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- CARDS DE ESTATISTICA -->
+    <div class="stats">
+      <div class="stat-card stat-total">
+        <div class="stat-number" id="statTotal">-</div>
+        <div class="stat-label">Total</div>
+      </div>
+      <div class="stat-card stat-pendente">
+        <div class="stat-number" id="statPendente">-</div>
+        <div class="stat-label">Pendentes</div>
+      </div>
+      <div class="stat-card stat-autorizado">
+        <div class="stat-number" id="statAutorizado">-</div>
+        <div class="stat-label">Autorizados</div>
+      </div>
+      <div class="stat-card stat-negado">
+        <div class="stat-number" id="statNegado">-</div>
+        <div class="stat-label">Negados</div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h2 class="section-title">Solicitacoes de Manutencao</h2>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="Pendente">Pendentes</button>
+      <button class="filter-btn" data-filter="Autorizado">Autorizados</button>
+      <button class="filter-btn" data-filter="Negado">Negados</button>
+    </div>
+
+    <!-- TABELA -->
+    <div class="table-card">
+      <table id="tabelaSolicitacoes">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Solicitante</th>
+            <th>Companhia</th>
+            <th>Prefixo</th>
+            <th>Motivo</th>
+            <th>Origem &rarr; Destino</th>
+            <th>Data / Hora</th>
+            <th>Status</th>
+            <th>Acao</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyRows">
+          <tr><td colspan="9" class="empty-state">Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <div id="globalMsg"></div>
+
+  <script>
+    const token    = localStorage.getItem('token');
+    const role     = localStorage.getItem('role');
+    const username = localStorage.getItem('username');
+
+    if (!token || role !== 'diretor') {
+      localStorage.clear();
+      window.location.href = '/';
+    }
+
+    document.getElementById('userName').textContent = username || 'Diretor';
+
+    let allRows = [];
+    let currentFilter = 'todos';
+
+    // ── LOGOUT ──────────────────────────────────
+    document.getElementById('btnLogout').addEventListener('click', async () => {
+      await fetch('/logout', {
+        method: 'POST',
+        headers: { 'Authorization': token }
+      }).catch(() => {});
+      localStorage.clear();
+      window.location.href = '/';
+    });
+
+    // ── FILTROS ──────────────────────────────────
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter = this.dataset.filter;
+        renderTabela();
+      });
+    });
+
+    // ── CARREGAR SOLICITACOES ────────────────────
+    async function carregarSolicitacoes() {
+      try {
+        const res = await fetch('/solicitacoes', { headers: { 'Authorization': token } });
+        if (res.status === 401) { localStorage.clear(); window.location.href = '/'; return; }
+        allRows = await res.json();
+        atualizarStats();
+        renderTabela();
+      } catch (err) {
+        document.getElementById('tbodyRows').innerHTML =
+          '<tr><td colspan="9" class="empty-state">Erro ao carregar dados.</td></tr>';
+      }
+    }
+
+    function atualizarStats() {
+      document.getElementById('statTotal').textContent     = allRows.length;
+      document.getElementById('statPendente').textContent  = allRows.filter(r => r.status === 'Pendente').length;
+      document.getElementById('statAutorizado').textContent = allRows.filter(r => r.status === 'Autorizado').length;
+      document.getElementById('statNegado').textContent    = allRows.filter(r => r.status === 'Negado').length;
+    }
+
+    function renderTabela() {
+      const tbody  = document.getElementById('tbodyRows');
+      const filtered = currentFilter === 'todos'
+        ? allRows
+        : allRows.filter(r => r.status === currentFilter);
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" class="empty-state">Nenhuma solicitacao encontrada.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(r => {
+        const isPendente = r.status === 'Pendente';
+        const acaoBtns = isPendente
+          ? `<button class="btn-autorizar" onclick="avaliar(${r.id}, 'Autorizado')">Autorizar</button>
+             <button class="btn-negar"     onclick="avaliar(${r.id}, 'Negado')">Negar</button>`
+          : `<span style="color:#aaa;font-size:12px">Avaliado</span>`;
+
+        return `
+          <tr id="row-${r.id}">
+            <td>${r.id}</td>
+            <td>${r.solicitante || '-'}</td>
+            <td>${r.company_name}</td>
+            <td><strong>${r.prefix}</strong></td>
+            <td title="${r.maintenance_reason}">${r.maintenance_reason.length > 40
+                ? r.maintenance_reason.slice(0, 40) + '...'
+                : r.maintenance_reason}</td>
+            <td>${r.origin_aerodrome} &rarr; ${r.destination_aerodrome}</td>
+            <td>${r.flight_date} ${r.flight_time}</td>
+            <td><span class="status-badge status-${r.status}">${r.status}</span></td>
+            <td>${acaoBtns}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // ── AVALIAR SOLICITACAO ──────────────────────
+    async function avaliar(id, status) {
+      const row = document.getElementById('row-' + id);
+      if (row) {
+        row.querySelectorAll('button').forEach(b => b.disabled = true);
+      }
+
+      try {
+        const res  = await fetch('/solicitacoes/' + id, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', 'Authorization': token },
+          body: JSON.stringify({ status })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          showMsg(data.error || 'Erro ao avaliar.', 'error');
+          if (row) row.querySelectorAll('button').forEach(b => b.disabled = false);
+        } else {
+          showMsg('Solicitacao #' + id + ' ' + status + '!', 'success');
+          carregarSolicitacoes();
+        }
+      } catch (err) {
+        showMsg('Erro de conexao.', 'error');
+        if (row) row.querySelectorAll('button').forEach(b => b.disabled = false);
+      }
+    }
+
+    function showMsg(text, type) {
+      const el = document.getElementById('globalMsg');
+      el.textContent = text;
+      el.className = type;
+      el.style.display = 'block';
+      setTimeout(() => { el.style.display = 'none'; }, 3000);
+    }
+
+    // Expoe avaliar globalmente para os botoes inline
+    window.avaliar = avaliar;
+
+    carregarSolicitacoes();
+    setInterval(carregarSolicitacoes, 15000);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+### Teste de Login - Rinaldo (Sucesso)
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "username": "Rinaldo",
+    "password": "123456"
+}
+
+###
+
+### Teste de Login - Dados Errados (Falha)
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "username": "Rinaldo",
+    "password": "123456"
+}

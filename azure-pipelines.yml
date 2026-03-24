@@ -1,0 +1,168 @@
+# azure-pipelines.yml
+# CI/CD - Projeto Saindo do Zero (ANAC Maintenance System)
+# Azure DevOps Pipelines - Sprint 1
+
+trigger:
+  branches:
+    include:
+      - main
+      - feature/*
+
+pr:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  nodeVersion: '20.x'
+  appDir: 'Projeto-Saindo-Do-Zero'
+
+stages:
+
+# ══════════════════════════════════════════════════════════
+# STAGE 1: BUILD & TEST
+# ══════════════════════════════════════════════════════════
+- stage: BuildAndTest
+  displayName: 'Build & Test'
+  jobs:
+
+  - job: SetupAndTest
+    displayName: 'Setup, Testes Playwright & Cypress'
+    timeoutInMinutes: 30
+
+    steps:
+
+    # Node.js
+    - task: NodeTool@0
+      displayName: 'Instalar Node.js $(nodeVersion)'
+      inputs:
+        versionSpec: $(nodeVersion)
+
+    # Instalar dependencias do app
+    - script: |
+        cd $(appDir)
+        npm ci
+      displayName: 'npm ci (app)'
+
+    # Instalar dependencias raiz (Cypress, Playwright)
+    - script: npm ci
+      displayName: 'npm ci (raiz / test tools)'
+
+    # Instalar browsers do Playwright
+    - script: npx playwright install --with-deps
+      displayName: 'Playwright: instalar browsers'
+
+    # Criar banco de dados
+    - script: |
+        cd $(appDir)
+        node setup_db.js
+      displayName: 'Setup banco SQLite'
+
+    # Iniciar servidor em background
+    - script: |
+        cd $(appDir)
+        nohup node server.js &
+        echo "Aguardando servidor..."
+        for i in $(seq 1 15); do
+          curl -s http://localhost:3000/debug-usuarios && break
+          sleep 1
+        done
+        echo "Servidor pronto."
+      displayName: 'Start servidor Node.js'
+
+    # Playwright Tests
+    - script: |
+        cd $(appDir)
+        npx playwright test tests/manutencao.spec.js --reporter=junit,html
+      displayName: 'Rodar testes Playwright'
+      continueOnError: false
+
+    - task: PublishTestResults@2
+      displayName: 'Publicar resultados Playwright'
+      condition: always()
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '$(appDir)/test-results/*.xml'
+        testRunTitle: 'Playwright - Sprint 1'
+
+    - task: PublishHtmlReport@1
+      displayName: 'Publicar relatorio HTML Playwright'
+      condition: always()
+      inputs:
+        reportDir: '$(appDir)/playwright-report'
+        tabName: 'Playwright Report'
+
+    # Cypress Tests
+    - script: |
+        npx cypress run \
+          --spec "cypress/e2e/manutencao.cy.js" \
+          --reporter junit \
+          --reporter-options "mochaFile=cypress/results/results.xml"
+      displayName: 'Rodar testes Cypress E2E'
+      continueOnError: false
+
+    - task: PublishTestResults@2
+      displayName: 'Publicar resultados Cypress'
+      condition: always()
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'cypress/results/*.xml'
+        testRunTitle: 'Cypress E2E - Sprint 1'
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publicar screenshots Cypress (falhas)'
+      condition: failed()
+      inputs:
+        PathtoPublish: 'cypress/screenshots'
+        ArtifactName: 'cypress-screenshots'
+
+    # Encerrar servidor
+    - script: pkill -f "node server.js" || true
+      displayName: 'Stop servidor de testes'
+      condition: always()
+
+# ══════════════════════════════════════════════════════════
+# STAGE 2: DEPLOY (apenas na branch main, testes passando)
+# ══════════════════════════════════════════════════════════
+- stage: Deploy
+  displayName: 'Deploy - Producao Local'
+  dependsOn: BuildAndTest
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+
+  jobs:
+  - deployment: DeployLocal
+    displayName: 'Deploy localhost:3000'
+    environment: 'producao-local'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          - task: NodeTool@0
+            displayName: 'Instalar Node.js'
+            inputs:
+              versionSpec: $(nodeVersion)
+
+          - script: |
+              cd $(appDir)
+              npm ci --production
+            displayName: 'Instalar deps de producao'
+
+          - script: |
+              cd $(appDir)
+              node setup_db.js
+            displayName: 'Inicializar banco de producao'
+
+          - script: |
+              cd $(appDir)
+              pkill -f "node server.js" || true
+              sleep 1
+              nohup node server.js > /tmp/anac-prod.log 2>&1 &
+              sleep 3
+              curl -s http://localhost:3000/debug-usuarios | grep -q "Rinaldo" \
+                && echo "=== DEPLOY OK - http://localhost:3000 ===" \
+                || (echo "=== HEALTH CHECK FALHOU ===" && exit 1)
+            displayName: 'Start servidor de producao + Health Check'

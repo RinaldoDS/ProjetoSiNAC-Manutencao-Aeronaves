@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SINAC - Painel do Colaborador</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      color: #333;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: #003087;
+      color: #fff;
+      padding: 0 32px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 { font-size: 18px; letter-spacing: 1px; }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .badge {
+      background: #0057b8;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    button.logout {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.2s;
+    }
+    button.logout:hover { background: rgba(255,255,255,0.15); }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 960px;
+      margin: 32px auto;
+      padding: 0 16px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #003087;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 3px solid #003087;
+    }
+
+    /* ── FORM ── */
+    .form-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      margin-bottom: 40px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group { display: flex; flex-direction: column; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input, select, textarea {
+      padding: 10px 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #0057b8;
+    }
+
+    .prefix-hint {
+      font-size: 11px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .btn-submit {
+      margin-top: 24px;
+      padding: 12px 32px;
+      background: #003087;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover  { background: #0057b8; }
+    .btn-submit:disabled { background: #aaa; cursor: not-allowed; }
+
+    #formMsg {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+    }
+    #formMsg.error   { background: #fde8e8; color: #c0392b; border: 1px solid #f5c6cb; }
+    #formMsg.success { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+
+    /* ── TABLE ── */
+    .table-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    thead {
+      background: #003087;
+      color: #fff;
+    }
+
+    thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    tbody tr { border-bottom: 1px solid #f0f0f0; }
+    tbody tr:hover { background: #fafafa; }
+    tbody td { padding: 12px 16px; }
+
+    .status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .status-Pendente   { background: #fff3cd; color: #856404; }
+    .status-Autorizado { background: #d4edda; color: #155724; }
+    .status-Negado     { background: #f8d7da; color: #721c24; }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #aaa;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SINAC &mdash; Sistema de Manutencao de Aeronaves</h1>
+    <div class="user-info">
+      <span id="userName">Carregando...</span>
+      <span class="badge">Colaborador</span>
+      <button class="logout" id="btnLogout">Sair</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- FORMULARIO DE SOLICITACAO -->
+    <h2 class="section-title">Nova Solicitacao de Manutencao</h2>
+
+    <div class="form-card">
+      <form id="formSolicitacao">
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label for="company_name">Nome da Companhia *</label>
+            <input type="text" id="company_name" placeholder="Ex: LATAM Airlines" required />
+          </div>
+
+          <div class="form-group">
+            <label for="prefix">Prefixo da Aeronave *</label>
+            <input type="text" id="prefix" placeholder="Ex: PT-ABC" maxlength="6"
+                   pattern="[A-Z]{2}-[A-Z]{3}" title="Formato: XX-XXX (letras maiusculas)" required />
+            <span class="prefix-hint">Formato: XX-XXX &mdash; ex: PT-ABC, GL-XYZ</span>
+          </div>
+
+          <div class="form-group full">
+            <label for="maintenance_reason">Motivo da Manutencao *</label>
+            <textarea id="maintenance_reason" rows="3"
+                      placeholder="Descreva o motivo da manutencao..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="origin_aerodrome">Aerodrome de Origem *</label>
+            <input type="text" id="origin_aerodrome" placeholder="Ex: SBGP - Guarulhos" required />
+          </div>
+
+          <div class="form-group">
+            <label for="destination_aerodrome">Aerodrome de Destino *</label>
+            <input type="text" id="destination_aerodrome" placeholder="Ex: SBRJ - Santos Dumont" required />
+          </div>
+
+          <div class="form-group">
+            <label for="flight_date">Data do Voo *</label>
+            <input type="date" id="flight_date" required />
+          </div>
+
+          <div class="form-group">
+            <label for="flight_time">Hora do Voo *</label>
+            <input type="time" id="flight_time" required />
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnSubmit">Enviar Solicitacao</button>
+      </form>
+
+      <div id="formMsg"></div>
+    </div>
+
+    <!-- MINHAS SOLICITACOES -->
+    <h2 class="section-title">Minhas Solicitacoes</h2>
+
+    <div class="table-card">
+      <table id="tabelaSolicitacoes">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Companhia</th>
+            <th>Prefixo</th>
+            <th>Origem</th>
+            <th>Destino</th>
+            <th>Data / Hora</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyRows">
+          <tr><td colspan="7" class="empty-state">Carregando solicitacoes...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <script>
+    const API = '';
+    const token    = localStorage.getItem('token');
+    const role     = localStorage.getItem('role');
+    const username = localStorage.getItem('username');
+
+    // Guard: redireciona se nao autenticado ou role errado
+    if (!token || role !== 'colaborador') {
+      localStorage.clear();
+      window.location.href = '/';
+    }
+
+    document.getElementById('userName').textContent = username || 'Usuario';
+
+    // ── LOGOUT ──────────────────────────────────
+    document.getElementById('btnLogout').addEventListener('click', async () => {
+      await fetch('/logout', {
+        method: 'POST',
+        headers: { 'Authorization': token }
+      }).catch(() => {});
+      localStorage.clear();
+      window.location.href = '/';
+    });
+
+    // ── LISTAR SOLICITACOES ──────────────────────
+    async function carregarSolicitacoes() {
+      try {
+        const res  = await fetch('/solicitacoes', { headers: { 'Authorization': token } });
+        if (res.status === 401) { localStorage.clear(); window.location.href = '/'; return; }
+        const data = await res.json();
+        renderTabela(data);
+      } catch (err) {
+        document.getElementById('tbodyRows').innerHTML =
+          '<tr><td colspan="7" class="empty-state">Erro ao carregar dados.</td></tr>';
+      }
+    }
+
+    function renderTabela(rows) {
+      const tbody = document.getElementById('tbodyRows');
+      if (!rows || rows.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="empty-state">Nenhuma solicitacao encontrada.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = rows.map(r => `
+        <tr>
+          <td>${r.id}</td>
+          <td>${r.company_name}</td>
+          <td><strong>${r.prefix}</strong></td>
+          <td>${r.origin_aerodrome}</td>
+          <td>${r.destination_aerodrome}</td>
+          <td>${r.flight_date} ${r.flight_time}</td>
+          <td><span class="status-badge status-${r.status}">${r.status}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    // ── ENVIAR SOLICITACAO ───────────────────────
+    document.getElementById('formSolicitacao').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmit');
+      const msg = document.getElementById('formMsg');
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      msg.style.display = 'none';
+
+      // Auto-uppercase no prefixo
+      const prefixEl = document.getElementById('prefix');
+      prefixEl.value = prefixEl.value.toUpperCase();
+
+      const payload = {
+        company_name:          document.getElementById('company_name').value.trim(),
+        prefix:                prefixEl.value,
+        maintenance_reason:    document.getElementById('maintenance_reason').value.trim(),
+        origin_aerodrome:      document.getElementById('origin_aerodrome').value.trim(),
+        destination_aerodrome: document.getElementById('destination_aerodrome').value.trim(),
+        flight_date:           document.getElementById('flight_date').value,
+        flight_time:           document.getElementById('flight_time').value
+      };
+
+      try {
+        const res  = await fetch('/solicitacoes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': token },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          msg.textContent = data.error || 'Erro ao enviar.';
+          msg.className = 'error';
+        } else {
+          msg.textContent = 'Solicitacao #' + data.id + ' criada com sucesso!';
+          msg.className = 'success';
+          e.target.reset();
+          carregarSolicitacoes();
+        }
+      } catch (err) {
+        msg.textContent = 'Nao foi possivel conectar ao servidor.';
+        msg.className = 'error';
+      } finally {
+        msg.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Enviar Solicitacao';
+      }
+    });
+
+    // Auto-uppercase no campo prefixo enquanto digita
+    document.getElementById('prefix').addEventListener('input', function() {
+      const pos = this.selectionStart;
+      this.value = this.value.toUpperCase();
+      this.setSelectionRange(pos, pos);
+    });
+
+    // Carregar ao iniciar e atualizar a cada 15s
+    carregarSolicitacoes();
+    setInterval(carregarSolicitacoes, 15000);
+  </script>
+
+</body>
+</html>
