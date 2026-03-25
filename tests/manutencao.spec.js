@@ -75,7 +75,7 @@ test.describe('US01 - Login UI', () => {
     // Then
     await page.waitForURL(`${BASE_URL}/dashboard.html`);
     await expect(page).toHaveURL(/dashboard\.html/);
-    await expect(page.locator('header h1')).toContainText('ANAC');
+    await expect(page.locator('header h1')).toContainText('SINAC');
   });
 
   test('Given senha errada, When faz login, Then exibe erro sem redirecionar', async ({ page }) => {
