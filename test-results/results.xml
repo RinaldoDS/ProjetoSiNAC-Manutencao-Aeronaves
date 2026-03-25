@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="72" failures="11" skipped="0" errors="0" time="29.55659">
-<testsuite name="manutencao.spec.js" timestamp="2026-03-25T18:50:31.703Z" hostname="chromium" tests="24" failures="1" skipped="0" time="15.408" errors="0">
-<testcase name="US01 - Login UI › pagina de login carrega corretamente" classname="manutencao.spec.js" time="0.42">
+<testsuites id="" name="" tests="24" failures="0" skipped="0" errors="0" time="5.589602">
+<testsuite name="manutencao.spec.js" timestamp="2026-03-25T18:58:53.258Z" hostname="chromium" tests="24" failures="0" skipped="0" time="3.62" errors="0">
+<testcase name="US01 - Login UI › pagina de login carrega corretamente" classname="manutencao.spec.js" time="0.355">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US01---Login-UI-e4148--login-carrega-corretamente-chromium\test-finished-1.png]]
@@ -9,104 +9,16 @@
 ]]>
 </system-out>
 </testcase>
-<testcase name="US01 - Login UI › Given Rinaldo com senha 123456, When faz login, Then vai para dashboard" classname="manutencao.spec.js" time="12.569">
-<failure message="manutencao.spec.js:65:3 Given Rinaldo com senha 123456, When faz login, Then vai para dashboard" type="FAILURE">
-<![CDATA[  [chromium] › manutencao.spec.js:65:3 › US01 - Login UI › Given Rinaldo com senha 123456, When faz login, Then vai para dashboard 
-
-    Error: expect(locator).toContainText(expected) failed
-
-    Locator: locator('header h1')
-    Expected substring: "ANAC"
-    Received string:    "SINAC — Sistema de Manutencao de Aeronaves"
-    Timeout: 5000ms
-
-    Call log:
-      - Expect "toContainText" with timeout 5000ms
-      - waiting for locator('header h1')
-        9 × locator resolved to <h1>SINAC — Sistema de Manutencao de Aeronaves</h1>
-          - unexpected value "SINAC — Sistema de Manutencao de Aeronaves"
-
-
-      76 |     await page.waitForURL(`${BASE_URL}/dashboard.html`);
-      77 |     await expect(page).toHaveURL(/dashboard\.html/);
-    > 78 |     await expect(page.locator('header h1')).toContainText('ANAC');
-         |                                             ^
-      79 |   });
-      80 |
-      81 |   test('Given senha errada, When faz login, Then exibe erro sem redirecionar', async ({ page }) => {
-        at C:\Users\Cliente\Desktop\Engineering-Lab\Projeto-Saindo-Do-Zero\tests\manutencao.spec.js:78:45
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toContainText(expected) failed
-
-    Locator: locator('header h1')
-    Expected substring: "ANAC"
-    Received string:    "SINAC — Sistema de Manutencao de Aeronaves"
-    Timeout: 5000ms
-
-    Call log:
-      - Expect "toContainText" with timeout 5000ms
-      - waiting for locator('header h1')
-        9 × locator resolved to <h1>SINAC — Sistema de Manutencao de Aeronaves</h1>
-          - unexpected value "SINAC — Sistema de Manutencao de Aeronaves"
-
-
-      76 |     await page.waitForURL(`${BASE_URL}/dashboard.html`);
-      77 |     await expect(page).toHaveURL(/dashboard\.html/);
-    > 78 |     await expect(page.locator('header h1')).toContainText('ANAC');
-         |                                             ^
-      79 |   });
-      80 |
-      81 |   test('Given senha errada, When faz login, Then exibe erro sem redirecionar', async ({ page }) => {
-        at C:\Users\Cliente\Desktop\Engineering-Lab\Projeto-Saindo-Do-Zero\tests\manutencao.spec.js:78:45
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium-retry1\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium-retry1\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
+<testcase name="US01 - Login UI › Given Rinaldo com senha 123456, When faz login, Then vai para dashboard" classname="manutencao.spec.js" time="1.173">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium\test-failed-1.png]]
-
-[[ATTACHMENT|manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium\error-context.md]]
+[[ATTACHMENT|manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium\test-finished-1.png]]
 
 [[ATTACHMENT|manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium\trace.zip]]
-
-[[ATTACHMENT|manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium-retry1\test-failed-1.png]]
-
-[[ATTACHMENT|manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium-retry1\error-context.md]]
-
-[[ATTACHMENT|manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-chromium-retry1\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="US01 - Login UI › Given senha errada, When faz login, Then exibe erro sem redirecionar" classname="manutencao.spec.js" time="0.528">
+<testcase name="US01 - Login UI › Given senha errada, When faz login, Then exibe erro sem redirecionar" classname="manutencao.spec.js" time="0.364">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-chromium\test-finished-1.png]]
@@ -115,7 +27,7 @@
 ]]>
 </system-out>
 </testcase>
-<testcase name="US01 - Login UI › Given Diretor Anac, When faz login, Then vai para anac.html" classname="manutencao.spec.js" time="1.165">
+<testcase name="US01 - Login UI › Given Diretor Anac, When faz login, Then vai para anac.html" classname="manutencao.spec.js" time="1.168">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-chromium\test-finished-1.png]]
@@ -124,56 +36,56 @@
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;PT-ABC&quot;" classname="manutencao.spec.js" time="0.038">
+<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;PT-ABC&quot;" classname="manutencao.spec.js" time="0.022">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Validaca-89939--API-prefixo-valido-PT-ABC--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;GL-XYZ&quot;" classname="manutencao.spec.js" time="0.033">
+<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;GL-XYZ&quot;" classname="manutencao.spec.js" time="0.032">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Validaca-f6b42--API-prefixo-valido-GL-XYZ--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;AD-CYP&quot;" classname="manutencao.spec.js" time="0.032">
+<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;AD-CYP&quot;" classname="manutencao.spec.js" time="0.031">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Validaca-4cb26--API-prefixo-valido-AD-CYP--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;AZ-BCD&quot;" classname="manutencao.spec.js" time="0.039">
+<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;AZ-BCD&quot;" classname="manutencao.spec.js" time="0.024">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Validaca-dd869--API-prefixo-valido-AZ-BCD--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;LA-TAM&quot;" classname="manutencao.spec.js" time="0.033">
+<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;LA-TAM&quot;" classname="manutencao.spec.js" time="0.022">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Validaca-65404--API-prefixo-valido-LA-TAM--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;pt-abc&quot; (minusculas)" classname="manutencao.spec.js" time="0.024">
+<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;pt-abc&quot; (minusculas)" classname="manutencao.spec.js" time="0.014">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Validaca-b364a-invalido-pt-abc-minusculas--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;PTABC&quot; (sem hifen)" classname="manutencao.spec.js" time="0.027">
+<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;PTABC&quot; (sem hifen)" classname="manutencao.spec.js" time="0.012">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Validaca-9dc7b-o-invalido-PTABC-sem-hifen--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;P-ABC&quot; (apenas 1 letra antes do hifen)" classname="manutencao.spec.js" time="0.039">
+<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;P-ABC&quot; (apenas 1 letra antes do hifen)" classname="manutencao.spec.js" time="0.012">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Validaca-48d08-nas-1-letra-antes-do-hifen--chromium\trace.zip]]
@@ -187,28 +99,28 @@
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;PT-ABCD&quot; (mais de 3 letras apos hifen)" classname="manutencao.spec.js" time="0.017">
+<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;PT-ABCD&quot; (mais de 3 letras apos hifen)" classname="manutencao.spec.js" time="0.013">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Validaca-cee12-ais-de-3-letras-apos-hifen--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;12-ABC&quot; (numeros no prefixo)" classname="manutencao.spec.js" time="0.014">
+<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;12-ABC&quot; (numeros no prefixo)" classname="manutencao.spec.js" time="0.012">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Validaca-352a2--12-ABC-numeros-no-prefixo--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;&quot; (campo vazio)" classname="manutencao.spec.js" time="0.018">
+<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;&quot; (campo vazio)" classname="manutencao.spec.js" time="0.02">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Validaca-c9cdd-efixo-invalido-campo-vazio--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Persistencia de Dados › Given solicitacao criada, When usuario faz logout e login novamente, Then dado ainda existe" classname="manutencao.spec.js" time="0.207">
+<testcase name="US02 - Persistencia de Dados › Given solicitacao criada, When usuario faz logout e login novamente, Then dado ainda existe" classname="manutencao.spec.js" time="0.14">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-chromium\test-finished-1.png]]
@@ -217,832 +129,52 @@
 ]]>
 </system-out>
 </testcase>
-<testcase name="US02 - Persistencia de Dados › Given dados criados por Rinaldo, When Diretor consulta, Then ve a solicitacao com status correto apos aprovacao" classname="manutencao.spec.js" time="0.065">
+<testcase name="US02 - Persistencia de Dados › Given dados criados por Rinaldo, When Diretor consulta, Then ve a solicitacao com status correto apos aprovacao" classname="manutencao.spec.js" time="0.08">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-US02---Persiste-78c11-atus-correto-apos-aprovacao-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Seguranca - Controle de Acesso › GET /solicitacoes sem token retorna 401" classname="manutencao.spec.js" time="0.021">
+<testcase name="Seguranca - Controle de Acesso › GET /solicitacoes sem token retorna 401" classname="manutencao.spec.js" time="0.011">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-Seguranca---Con-3967d-acoes-sem-token-retorna-401-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Seguranca - Controle de Acesso › GET /solicitacoes com token invalido retorna 401" classname="manutencao.spec.js" time="0.014">
+<testcase name="Seguranca - Controle de Acesso › GET /solicitacoes com token invalido retorna 401" classname="manutencao.spec.js" time="0.011">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-Seguranca---Con-5216a--token-invalido-retorna-401-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Seguranca - Controle de Acesso › Colaborador nao pode aprovar solicitacao (403)" classname="manutencao.spec.js" time="0.022">
+<testcase name="Seguranca - Controle de Acesso › Colaborador nao pode aprovar solicitacao (403)" classname="manutencao.spec.js" time="0.018">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-Seguranca---Con-05f01-de-aprovar-solicitacao-403--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Seguranca - Controle de Acesso › Diretor nao pode criar solicitacao (403)" classname="manutencao.spec.js" time="0.019">
+<testcase name="Seguranca - Controle de Acesso › Diretor nao pode criar solicitacao (403)" classname="manutencao.spec.js" time="0.016">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-Seguranca---Con-a7bdb-pode-criar-solicitacao-403--chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Seguranca - Controle de Acesso › Given usuario logado, When faz logout, Then token invalido retorna 401" classname="manutencao.spec.js" time="0.025">
+<testcase name="Seguranca - Controle de Acesso › Given usuario logado, When faz logout, Then token invalido retorna 401" classname="manutencao.spec.js" time="0.033">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|manutencao-Seguranca---Con-da024--token-invalido-retorna-401-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Seguranca - Controle de Acesso › Status invalido retorna 400" classname="manutencao.spec.js" time="0.023">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-6d067-Status-invalido-retorna-400-chromium\trace.zip]]
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="manutencao.spec.js" timestamp="2026-03-25T18:50:31.703Z" hostname="firefox" tests="24" failures="5" skipped="0" time="0.504" errors="0">
-<testcase name="US01 - Login UI › pagina de login carrega corretamente" classname="manutencao.spec.js" time="0.003">
-<failure message="manutencao.spec.js:56:3 pagina de login carrega corretamente" type="FAILURE">
-<![CDATA[  [firefox] › manutencao.spec.js:56:3 › US01 - Login UI › pagina de login carrega corretamente ─────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e4148--login-carrega-corretamente-firefox\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e4148--login-carrega-corretamente-firefox\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e4148--login-carrega-corretamente-firefox-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e4148--login-carrega-corretamente-firefox-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US01---Login-UI-e4148--login-carrega-corretamente-firefox\trace.zip]]
-
-[[ATTACHMENT|manutencao-US01---Login-UI-e4148--login-carrega-corretamente-firefox-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US01 - Login UI › Given Rinaldo com senha 123456, When faz login, Then vai para dashboard" classname="manutencao.spec.js" time="0.002">
-<failure message="manutencao.spec.js:65:3 Given Rinaldo com senha 123456, When faz login, Then vai para dashboard" type="FAILURE">
-<![CDATA[  [firefox] › manutencao.spec.js:65:3 › US01 - Login UI › Given Rinaldo com senha 123456, When faz login, Then vai para dashboard 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-firefox\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-firefox\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-firefox-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-firefox-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-firefox\trace.zip]]
-
-[[ATTACHMENT|manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-firefox-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US01 - Login UI › Given senha errada, When faz login, Then exibe erro sem redirecionar" classname="manutencao.spec.js" time="0.003">
-<failure message="manutencao.spec.js:81:3 Given senha errada, When faz login, Then exibe erro sem redirecionar" type="FAILURE">
-<![CDATA[  [firefox] › manutencao.spec.js:81:3 › US01 - Login UI › Given senha errada, When faz login, Then exibe erro sem redirecionar 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-firefox\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-firefox\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-firefox-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-firefox-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-firefox\trace.zip]]
-
-[[ATTACHMENT|manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-firefox-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US01 - Login UI › Given Diretor Anac, When faz login, Then vai para anac.html" classname="manutencao.spec.js" time="0.006">
-<failure message="manutencao.spec.js:93:3 Given Diretor Anac, When faz login, Then vai para anac.html" type="FAILURE">
-<![CDATA[  [firefox] › manutencao.spec.js:93:3 › US01 - Login UI › Given Diretor Anac, When faz login, Then vai para anac.html 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-firefox\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-firefox\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-firefox-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-firefox-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-firefox\trace.zip]]
-
-[[ATTACHMENT|manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-firefox-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;PT-ABC&quot;" classname="manutencao.spec.js" time="0.043">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-89939--API-prefixo-valido-PT-ABC--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;GL-XYZ&quot;" classname="manutencao.spec.js" time="0.027">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-f6b42--API-prefixo-valido-GL-XYZ--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;AD-CYP&quot;" classname="manutencao.spec.js" time="0.024">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-4cb26--API-prefixo-valido-AD-CYP--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;AZ-BCD&quot;" classname="manutencao.spec.js" time="0.036">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-dd869--API-prefixo-valido-AZ-BCD--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;LA-TAM&quot;" classname="manutencao.spec.js" time="0.034">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-65404--API-prefixo-valido-LA-TAM--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;pt-abc&quot; (minusculas)" classname="manutencao.spec.js" time="0.015">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-b364a-invalido-pt-abc-minusculas--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;PTABC&quot; (sem hifen)" classname="manutencao.spec.js" time="0.013">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-9dc7b-o-invalido-PTABC-sem-hifen--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;P-ABC&quot; (apenas 1 letra antes do hifen)" classname="manutencao.spec.js" time="0.014">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-48d08-nas-1-letra-antes-do-hifen--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;PT-AB&quot; (apenas 2 letras apos hifen)" classname="manutencao.spec.js" time="0.014">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-bb876-apenas-2-letras-apos-hifen--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;PT-ABCD&quot; (mais de 3 letras apos hifen)" classname="manutencao.spec.js" time="0.022">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-cee12-ais-de-3-letras-apos-hifen--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;12-ABC&quot; (numeros no prefixo)" classname="manutencao.spec.js" time="0.012">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-352a2--12-ABC-numeros-no-prefixo--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;&quot; (campo vazio)" classname="manutencao.spec.js" time="0.012">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-c9cdd-efixo-invalido-campo-vazio--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Persistencia de Dados › Given solicitacao criada, When usuario faz logout e login novamente, Then dado ainda existe" classname="manutencao.spec.js" time="0.002">
-<failure message="manutencao.spec.js:172:3 Given solicitacao criada, When usuario faz logout e login novamente, Then dado ainda existe" type="FAILURE">
-<![CDATA[  [firefox] › manutencao.spec.js:172:3 › US02 - Persistencia de Dados › Given solicitacao criada, When usuario faz logout e login novamente, Then dado ainda existe 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-firefox\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-firefox\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\firefox-1509\firefox\firefox.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-firefox-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-firefox-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-firefox\trace.zip]]
-
-[[ATTACHMENT|manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-firefox-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Persistencia de Dados › Given dados criados por Rinaldo, When Diretor consulta, Then ve a solicitacao com status correto apos aprovacao" classname="manutencao.spec.js" time="0.098">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Persiste-78c11-atus-correto-apos-aprovacao-firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Seguranca - Controle de Acesso › GET /solicitacoes sem token retorna 401" classname="manutencao.spec.js" time="0.018">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-3967d-acoes-sem-token-retorna-401-firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Seguranca - Controle de Acesso › GET /solicitacoes com token invalido retorna 401" classname="manutencao.spec.js" time="0.013">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-5216a--token-invalido-retorna-401-firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Seguranca - Controle de Acesso › Colaborador nao pode aprovar solicitacao (403)" classname="manutencao.spec.js" time="0.031">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-05f01-de-aprovar-solicitacao-403--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Seguranca - Controle de Acesso › Diretor nao pode criar solicitacao (403)" classname="manutencao.spec.js" time="0.02">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-a7bdb-pode-criar-solicitacao-403--firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Seguranca - Controle de Acesso › Given usuario logado, When faz logout, Then token invalido retorna 401" classname="manutencao.spec.js" time="0.023">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-da024--token-invalido-retorna-401-firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Seguranca - Controle de Acesso › Status invalido retorna 400" classname="manutencao.spec.js" time="0.019">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-6d067-Status-invalido-retorna-400-firefox\trace.zip]]
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="manutencao.spec.js" timestamp="2026-03-25T18:50:31.703Z" hostname="webkit" tests="24" failures="5" skipped="0" time="0.516" errors="0">
-<testcase name="US01 - Login UI › pagina de login carrega corretamente" classname="manutencao.spec.js" time="0.004">
-<failure message="manutencao.spec.js:56:3 pagina de login carrega corretamente" type="FAILURE">
-<![CDATA[  [webkit] › manutencao.spec.js:56:3 › US01 - Login UI › pagina de login carrega corretamente ──────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e4148--login-carrega-corretamente-webkit\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e4148--login-carrega-corretamente-webkit\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e4148--login-carrega-corretamente-webkit-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e4148--login-carrega-corretamente-webkit-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US01---Login-UI-e4148--login-carrega-corretamente-webkit\trace.zip]]
-
-[[ATTACHMENT|manutencao-US01---Login-UI-e4148--login-carrega-corretamente-webkit-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US01 - Login UI › Given Rinaldo com senha 123456, When faz login, Then vai para dashboard" classname="manutencao.spec.js" time="0.006">
-<failure message="manutencao.spec.js:65:3 Given Rinaldo com senha 123456, When faz login, Then vai para dashboard" type="FAILURE">
-<![CDATA[  [webkit] › manutencao.spec.js:65:3 › US01 - Login UI › Given Rinaldo com senha 123456, When faz login, Then vai para dashboard 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-webkit\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-webkit\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-webkit-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-webkit-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-webkit\trace.zip]]
-
-[[ATTACHMENT|manutencao-US01---Login-UI-e1d0f-gin-Then-vai-para-dashboard-webkit-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US01 - Login UI › Given senha errada, When faz login, Then exibe erro sem redirecionar" classname="manutencao.spec.js" time="0.004">
-<failure message="manutencao.spec.js:81:3 Given senha errada, When faz login, Then exibe erro sem redirecionar" type="FAILURE">
-<![CDATA[  [webkit] › manutencao.spec.js:81:3 › US01 - Login UI › Given senha errada, When faz login, Then exibe erro sem redirecionar 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-webkit\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-webkit\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-webkit-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-webkit-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-webkit\trace.zip]]
-
-[[ATTACHMENT|manutencao-US01---Login-UI-e1af8-exibe-erro-sem-redirecionar-webkit-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US01 - Login UI › Given Diretor Anac, When faz login, Then vai para anac.html" classname="manutencao.spec.js" time="0.003">
-<failure message="manutencao.spec.js:93:3 Given Diretor Anac, When faz login, Then vai para anac.html" type="FAILURE">
-<![CDATA[  [webkit] › manutencao.spec.js:93:3 › US01 - Login UI › Given Diretor Anac, When faz login, Then vai para anac.html 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-webkit\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-webkit\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-webkit-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-webkit-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-webkit\trace.zip]]
-
-[[ATTACHMENT|manutencao-US01---Login-UI-65949-gin-Then-vai-para-anac-html-webkit-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;PT-ABC&quot;" classname="manutencao.spec.js" time="0.042">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-89939--API-prefixo-valido-PT-ABC--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;GL-XYZ&quot;" classname="manutencao.spec.js" time="0.023">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-f6b42--API-prefixo-valido-GL-XYZ--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;AD-CYP&quot;" classname="manutencao.spec.js" time="0.029">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-4cb26--API-prefixo-valido-AD-CYP--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;AZ-BCD&quot;" classname="manutencao.spec.js" time="0.035">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-dd869--API-prefixo-valido-AZ-BCD--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo valido: &quot;LA-TAM&quot;" classname="manutencao.spec.js" time="0.023">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-65404--API-prefixo-valido-LA-TAM--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;pt-abc&quot; (minusculas)" classname="manutencao.spec.js" time="0.014">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-b364a-invalido-pt-abc-minusculas--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;PTABC&quot; (sem hifen)" classname="manutencao.spec.js" time="0.014">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-9dc7b-o-invalido-PTABC-sem-hifen--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;P-ABC&quot; (apenas 1 letra antes do hifen)" classname="manutencao.spec.js" time="0.016">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-48d08-nas-1-letra-antes-do-hifen--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;PT-AB&quot; (apenas 2 letras apos hifen)" classname="manutencao.spec.js" time="0.016">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-bb876-apenas-2-letras-apos-hifen--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;PT-ABCD&quot; (mais de 3 letras apos hifen)" classname="manutencao.spec.js" time="0.021">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-cee12-ais-de-3-letras-apos-hifen--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;12-ABC&quot; (numeros no prefixo)" classname="manutencao.spec.js" time="0.014">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-352a2--12-ABC-numeros-no-prefixo--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Validacao de Prefixo (API) › prefixo invalido: &quot;&quot; (campo vazio)" classname="manutencao.spec.js" time="0.014">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Validaca-c9cdd-efixo-invalido-campo-vazio--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Persistencia de Dados › Given solicitacao criada, When usuario faz logout e login novamente, Then dado ainda existe" classname="manutencao.spec.js" time="0.001">
-<failure message="manutencao.spec.js:172:3 Given solicitacao criada, When usuario faz logout e login novamente, Then dado ainda existe" type="FAILURE">
-<![CDATA[  [webkit] › manutencao.spec.js:172:3 › US02 - Persistencia de Dados › Given solicitacao criada, When usuario faz logout e login novamente, Then dado ainda existe 
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-webkit\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-webkit\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: browserType.launch: Executable doesn't exist at C:\Users\Cliente\AppData\Local\ms-playwright\webkit-2248\Playwright.exe
-    ╔═════════════════════════════════════════════════════════════════════════╗
-    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
-    ║ Please run the following command to download new browsers:              ║
-    ║                                                                         ║
-    ║     npx playwright install                                              ║
-    ║                                                                         ║
-    ║ <3 Playwright Team                                                      ║
-    ╚═════════════════════════════════════════════════════════════════════════╝
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-webkit-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-webkit-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-webkit\trace.zip]]
-
-[[ATTACHMENT|manutencao-US02---Persiste-d8d02-ente-Then-dado-ainda-existe-webkit-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="US02 - Persistencia de Dados › Given dados criados por Rinaldo, When Diretor consulta, Then ve a solicitacao com status correto apos aprovacao" classname="manutencao.spec.js" time="0.116">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-US02---Persiste-78c11-atus-correto-apos-aprovacao-webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Seguranca - Controle de Acesso › GET /solicitacoes sem token retorna 401" classname="manutencao.spec.js" time="0.019">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-3967d-acoes-sem-token-retorna-401-webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Seguranca - Controle de Acesso › GET /solicitacoes com token invalido retorna 401" classname="manutencao.spec.js" time="0.012">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-5216a--token-invalido-retorna-401-webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Seguranca - Controle de Acesso › Colaborador nao pode aprovar solicitacao (403)" classname="manutencao.spec.js" time="0.021">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-05f01-de-aprovar-solicitacao-403--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Seguranca - Controle de Acesso › Diretor nao pode criar solicitacao (403)" classname="manutencao.spec.js" time="0.023">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-a7bdb-pode-criar-solicitacao-403--webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
-<testcase name="Seguranca - Controle de Acesso › Given usuario logado, When faz logout, Then token invalido retorna 401" classname="manutencao.spec.js" time="0.025">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-da024--token-invalido-retorna-401-webkit\trace.zip]]
-]]>
-</system-out>
-</testcase>
 <testcase name="Seguranca - Controle de Acesso › Status invalido retorna 400" classname="manutencao.spec.js" time="0.021">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|manutencao-Seguranca---Con-6d067-Status-invalido-retorna-400-webkit\trace.zip]]
+[[ATTACHMENT|manutencao-Seguranca---Con-6d067-Status-invalido-retorna-400-chromium\trace.zip]]
 ]]>
 </system-out>
 </testcase>
